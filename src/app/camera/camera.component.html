@@ -1,0 +1,25 @@
+<div class="camera-container">
+    <!-- Placeholder para imagen -->
+    <div id="image-placeholder" class="placeholder" *ngIf="!imgUrl">
+        <span class="placeholder-icon">📷</span>
+        <p class="placeholder-text">No hay imagen seleccionada</p>
+    </div>
+    
+    <!-- Botón para tomar la foto -->
+    <button id="take-picture-button" class="take-picture-button" (click)="takePicture()" [disabled]="loading">
+        {{ loading ? 'Cargando...' : 'Tomar Foto' }}
+    </button>
+    
+    <!-- Spinner para indicar carga -->
+    <div id="loading-spinner" class="loading-spinner" *ngIf="loading">
+        ⌛
+    </div>
+    
+    <!-- Mensaje de error -->
+    <div id="error-message" class="error-message" *ngIf="errorMessage">
+        {{ errorMessage }}
+    </div>
+    
+    <!-- Imagen capturada -->
+    <img *ngIf="imgUrl" [src]="imgUrl" class="captured-image">
+</div>

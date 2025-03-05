@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    font-family: "Montserrat", sans-serif;
+}
+
+.camera-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    padding: 100px;
+    opacity: 0; /* Inicialmente invisible */
+    transform: translateY(30px); /* Comienza desplazado hacia abajo */
+    animation: fadeInSlideUp 1s ease-out forwards; /* Llamada a la animación */
+}
+
+.camera-container p {
+    font-size: 12px;
+}
+
+.captured-image {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.placeholder {
+    width: 200px;
+    height: 200px;
+    background-color: #1a1a1a;
+    border: 2px dashed #555;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.placeholder-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+    opacity: 0.5;
+}
+
+.placeholder-text {
+    font-size: 14px;
+    color: #999;
+}
+
+.take-picture-button {
+    --glow-color: rgb(217, 176, 255);
+    --glow-spread-color: rgba(191, 123, 255, 0.781);
+    --enhanced-glow-color: rgb(231, 206, 255);
+    --btn-color: rgb(100, 61, 136);
+    border: .25em solid var(--glow-color);
+    padding: 1em 3em;
+    color: var(--glow-color);
+    font-size: 15px;
+    font-weight: bold;
+    background-color: var(--btn-color);
+    border-radius: 1em;
+    outline: none;
+    box-shadow: 0 0 1em .25em var(--glow-color),
+        0 0 4em 1em var(--glow-spread-color),
+        inset 0 0 .75em .25em var(--glow-color);
+    text-shadow: 0 0 .5em var(--glow-color);
+    position: relative;
+    transition: all 0.3s;
+}
+
+.take-picture-button::after {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    top: 120%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--glow-spread-color);
+    filter: blur(2em);
+    opacity: .7;
+    transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
+}
+
+.take-picture-button:hover {
+    color: var(--btn-color);
+    background-color: var(--glow-color);
+    box-shadow: 0 0 1em .25em var(--glow-color),
+        0 0 4em 2em var(--glow-spread-color),
+        inset 0 0 .75em .25em var(--glow-color);
+}
+
+.take-picture-button:active {
+    box-shadow: 0 0 0.6em .25em var(--glow-color),
+        0 0 2.5em 2em var(--glow-spread-color),
+        inset 0 0 .5em .25em var(--glow-color);
+}
+
+.loading-spinner {
+    animation: spin 1s linear infinite;
+    display: inline-block;
+}
+
+.error-message {
+    margin-top: 15px;
+    color: #ff6b6b;
+    background-color: rgba(255, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    border-left: 3px solid #ff6b6b;
+    max-width: 300px;
+    text-align: center;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Animación de fade-in y slide-up */
+@keyframes fadeInSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Media Queries para hacer el diseño responsivo */
+
+/* Pantallas pequeñas */
+@media (max-width: 600px) {
+    .camera-container {
+        padding: 50px 20px;
+    }
+
+    .placeholder {
+        width: 150px;
+        height: 150px;
+    }
+
+    .take-picture-button {
+        padding: 0.8em 2em;
+        font-size: 14px;
+    }
+
+    .captured-image {
+        max-height: 250px;
+    }
+
+    .error-message {
+        max-width: 100%;
+    }
+}
+
+/* Pantallas medianas */
+@media (max-width: 900px) {
+    .camera-container {
+        padding: 70px 30px;
+    }
+
+    .placeholder {
+        width: 180px;
+        height: 180px;
+    }
+
+    .take-picture-button {
+        padding: 0.9em 2.5em;
+        font-size: 15px;
+    }
+
+    .captured-image {
+        max-height: 280px;
+    }
+}
+
+/* Pantallas grandes (por si se necesitan ajustes adicionales en pantallas grandes) */
+@media (min-width: 1200px) {
+    .camera-container {
+        padding: 100px;
+    }
+
+    .placeholder {
+        width: 220px;
+        height: 220px;
+    }
+
+    .take-picture-button {
+        padding: 1em 3em;
+        font-size: 16px;
+    }
+
+    .captured-image {
+        max-height: 300px;
+    }
+}
